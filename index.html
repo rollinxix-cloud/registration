@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PES MATCHES REGISTRATIONS</title>
+    <title>EDN REGISTRATIONS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,12 @@
 <body class="dark-mode">
 
     <header class="navbar">
-        <div class="logo">PES MATCHES <span>REGISTRATIONS</span></div>
+        <div class="logo" onclick="switchPage('home')" style="cursor: pointer;">EDN <span>REGISTRATIONS</span></div>
         <nav>
-            <a href="#events">Noticeboard</a>
-            <a href="#guidelines">Guidelines</a>
-            <a href="#register" class="cta-nav">Register Portal</a>
+            <a href="#" onclick="switchPage('home')">Home</a>
+            <a href="#" onclick="switchPage('guidelines')">Guidelines</a>
+            <a href="#" onclick="switchPage('register')" class="cta-nav">Registration Here</a>
+            <a href="#" onclick="switchPage('dashboard')">Live Dashboard</a>
             <button id="theme-toggle" class="btn-theme">☀️ Light Mode</button>
         </nav>
     </header>
@@ -29,153 +30,213 @@
         </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>ENTER THE PITCHNATION</h1>
-            <p>Claim your slot, submit validation, and track your upcoming matches live.</p>
-            <a href="#register" class="btn-primary">REGISTER NOW</a>
-        </div>
-    </section>
-
     <main class="container">
-        
-        <section id="guidelines" class="section">
-            <h2 class="section-title">TOURNAMENT GUIDELINES</h2>
-            <div class="grid">
-                <div class="card ef-card" style="border-left-color: var(--accent-gold);">
-                    <h3 style="color: var(--accent-gold);">🏆 League Tournament</h3>
-                    <ul>
-                        <li><strong>Match Duration:</strong> 12 minutes</li>
-                        <li><strong>Condition:</strong> Excellent</li>
-                        <li><strong>Extra Time & Penalty:</strong> OFF</li>
-                        <li><strong>Injury:</strong> OFF</li>
-                    </ul>
-                </div>
-                <div class="card ef-card" style="border-left-color: var(--accent-blue);">
-                    <h3 style="color: var(--accent-blue);">⚔️ Knockout Tournament</h3>
-                    <ul>
-                        <li><strong>Match Duration:</strong> 12 minutes</li>
-                        <li><strong>Condition:</strong> Excellent</li>
-                        <li><strong>Extra Time & Penalty:</strong> ON</li>
-                        <li><strong>Injury:</strong> OFF</li>
-                    </ul>
-                </div>
-                <div class="card ef-card" style="border-left-color: #ef4444;">
-                    <h3 style="color: #ef4444;">🔥 1v1 Bet</h3>
-                    <ul>
-                        <li>Players hold complete freedom to mutually discuss and finalize match duration, condition settings, extra time metrics, and penalties.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="alert-box">
-                <strong>🚨 MANDATORY POLICY:</strong> The match winner MUST capture and post their full-time result screenshot immediately to our official Facebook Group: <span style="color: var(--accent-gold);">P.E.S MATCHES</span>.
-            </div>
-        </section>
 
-        <section id="register" class="section form-section">
-            <div class="form-container">
-                <h2 class="section-title text-center" style="margin-bottom: 10px;">SECURE YOUR ENTRY</h2>
-                <p class="text-center" style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.9rem;">Verify pricing rules, choose payment platform, and drop transaction records below.</p>
+        <div id="page-home" class="view-page active">
+            <section class="hero glass-panel">
+                <div class="hero-content">
+                    <h1>ENTER THE PITCHNATION</h1>
+                    <p>Claim your slot, submit validation, and track your upcoming matches live.</p>
+                    <button onclick="switchPage('register')" class="btn-primary">SECURE YOUR ENTRY</button>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-guidelines" class="view-page">
+            <section class="section">
+                <h2 class="section-title">TOURNAMENT GUIDELINES</h2>
+                <div class="grid">
+                    <div class="card ef-card glass-panel" style="border-top-color: var(--accent-gold);">
+                        <h3 class="highlight-gold">🏆 League Tournament</h3>
+                        <ul>
+                            <li><strong>Match Duration:</strong> 12 minutes</li>
+                            <li><strong>Condition:</strong> Excellent</li>
+                            <li><strong>Extra Time & Penalty:</strong> OFF</li>
+                            <li><strong>Injury:</strong> OFF</li>
+                        </ul>
+                    </div>
+                    <div class="card ef-card glass-panel" style="border-top-color: var(--accent-blue);">
+                        <h3 style="color: var(--accent-blue);">⚔️ Knockout Tournament</h3>
+                        <ul>
+                            <li><strong>Match Duration:</strong> 12 minutes</li>
+                            <li><strong>Condition:</strong> Excellent</li>
+                            <li><strong>Extra Time & Penalty:</strong> ON</li>
+                            <li><strong>Injury:</strong> OFF</li>
+                        </ul>
+                    </div>
+                    <div class="card ef-card glass-panel" style="border-top-color: #ef4444;">
+                        <h3 style="color: #ef4444;">🔥 1v1 Bet</h3>
+                        <ul>
+                            <li>Players hold complete freedom to mutually discuss and finalize match duration, condition settings, extra time metrics, and penalties.</li>
+                        </ul>
+                    </div>
+                </div>
                 
-                <form action="https://formspree.io/f/xykavnzn" method="POST">
+                <div class="alert-box glass-panel">
+                    <strong>🚨 MANDATORY POLICY:</strong> The match winner MUST capture and post their full-time result screenshot immediately to our official Facebook Group: <span class="highlight-gold">EDN</span>.<br>
+                    <em>*In the event of a Draw in a league match, at least one player must also capture and post the final result.</em>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-register" class="view-page">
+            <section class="section form-section">
+                <div class="form-container glass-panel">
+                    <h2 class="section-title text-center" style="margin-bottom: 10px;">SECURE YOUR ENTRY</h2>
+                    <p class="text-center" style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.9rem;">Verify pricing rules, choose payment platform, and drop transaction records below.</p>
                     
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name / tournament tag" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fb-profile">Facebook Profile Link</label>
-                        <input type="url" id="fb-profile" name="fb_profile" placeholder="https://facebook.com/yourprofile" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Tournament Category</label>
-                        <select id="category" name="category" required>
-                            <option value="" disabled selected>Choose target tournament category...</option>
-                            <option value="league">League Tournament</option>
-                            <option value="knockout">Knockout Tournament</option>
-                            <option value="1v1">1 vs 1 Bet</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="amount">Payment Amount (NPR)</label>
-                        <select id="amount" name="amount" required disabled>
-                            <option value="" disabled selected>Please choose a tournament category first...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Choose Payment Gateway</label>
-                        <div class="radio-group">
-                            <label class="radio-label"><input type="radio" name="payment_method" value="esewa" required> eSewa</label>
-                            <label class="radio-label"><input type="radio" name="payment_method" value="khalti" required> Khalti</label>
+                    <form action="https://formspree.io/f/xykavnzn" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name / tournament tag" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="fb-profile">Facebook Profile Link</label>
+                            <input type="url" id="fb-profile" name="fb_profile" placeholder="https://facebook.com/yourprofile" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Tournament Category</label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Choose target tournament category...</option>
+                                <option value="league">League Tournament</option>
+                                <option value="knockout">Knockout Tournament</option>
+                                <option value="1v1">1 vs 1 Bet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Payment Amount (NPR)</label>
+                            <select id="amount" name="amount" required disabled>
+                                <option value="" disabled selected>Please choose a tournament category first...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Choose Payment Gateway</label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="payment_method" value="esewa" required> eSewa</label>
+                                <label class="radio-label"><input type="radio" name="payment_method" value="khalti" required> Khalti</label>
+                            </div>
+                            
+                            <div class="qr-container">
+                                <div class="qr-box">
+                                    <p>eSewa Scan Asset</p>
+                                    <img src="esewa-qr.jpg" alt="eSewa QR Asset Link" class="qr-img">
+                                </div>
+                                <div class="qr-box">
+                                    <p>Khalti Scan Asset</p>
+                                    <img src="khalti-qr.jpg" alt="Khalti QR Asset Link" class="qr-img">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transaction-code">Transaction Code</label>
+                            <input type="text" id="transaction-code" name="transaction_code" placeholder="Paste structural reference ID / code here" required>
+                        </div>
+
+                        <button type="submit" class="btn-submit">SUBMIT REGISTRATION</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-dashboard" class="view-page">
+            <section class="section">
+                <h2 class="section-title text-center">LIVE PLAYER DASHBOARD</h2>
+                
+                <div class="grid">
+                    <div class="card ef-card glass-panel" style="border-top-color: var(--accent-gold);">
+                        <h3 class="highlight-gold text-center">🏆 LEAGUE SLOTS</h3>
                         
-                        <div class="qr-container">
-                            <div class="qr-box">
-                                <p>eSewa Scan Asset</p>
-                                <img src="esewa-qr.jpg" alt="eSewa QR Asset Link" class="qr-img">
-                            </div>
-                            <div class="qr-box">
-                                <p>Khalti Scan Asset</p>
-                                <img src="khalti-qr.jpg" alt="Khalti QR Asset Link" class="qr-img">
-                            </div>
+                        <div class="tier-group">
+                            <h4>Rs 100 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 150 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 200 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="transaction-code">Transaction Code</label>
-                        <input type="text" id="transaction-code" name="transaction_code" placeholder="Paste structural reference ID / code here" required>
+                    <div class="card ef-card glass-panel" style="border-top-color: var(--accent-blue);">
+                        <h3 style="color: var(--accent-blue);" class="text-center">⚔️ KNOCKOUT SLOTS</h3>
+                        
+                        <div class="tier-group">
+                            <h4>Rs 150 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 200 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 300 Entry Pool</h4>
+                            <ol class="player-list">
+                                </ol>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">SUBMIT REGISTRATION</button>
-                </form>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title text-center">LIVE PLAYER DASHBOARD</h2>
-            <p class="text-center" style="margin-bottom: 40px; color: var(--text-muted);">Verified active combatants locked inside the current bracket pools.</p>
-            
-            <div class="grid">
-                <div class="card ef-card" style="border-left-color: var(--accent-gold);">
-                    <h3 style="color: var(--accent-gold);">🏆 LEAGUE SLOTS</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Updated via Automated Engine</p>
-                    <ol class="player-list">
-                        <li>Jon Bonz</li>
-                    </ol>
+                    <div class="card ef-card glass-panel" style="border-top-color: #ef4444;">
+                        <h3 style="color: #ef4444;" class="text-center">🔥 1V1 ACTIVE BETS</h3>
+                        
+                        <div class="tier-group">
+                            <h4>Rs 50 Pool</h4>
+                            <ul class="player-list bet-list">
+                                </ul>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 100 Pool</h4>
+                            <ul class="player-list bet-list">
+                                </ul>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 150 Pool</h4>
+                            <ul class="player-list bet-list">
+                                </ul>
+                        </div>
+                        <div class="tier-group">
+                            <h4>Rs 200 Pool</h4>
+                            <ul class="player-list bet-list">
+                                </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="card ef-card" style="border-left-color: var(--accent-blue);">
-                    <h3 style="color: var(--accent-blue);">⚔️ KNOCKOUT SLOTS</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Updated via Automated Engine</p>
-                    <ol class="player-list">
-                        <li>Sabin_Gamer</li>
-                    </ol>
-                </div>
-
-                <div class="card ef-card" style="border-left-color: #ef4444;">
-                    <h3 style="color: #ef4444;">🔥 1V1 ACTIVE BETS</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Claim matches via FB Group thread</p>
-                    <ul class="player-list bet-list">
-                        <li><strong>Niranjan</strong> is challenging for <strong>Rs 150</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
     </main>
 
     <footer>
-        <p>&copy; P.E.S MATCHES. Hosted by: <a href="https://facebook.com/pesmatches5" target="_blank" class="footer-link">JON BONZ</a> <span style="font-size: 0.75rem; color: var(--text-muted);">(Clickable Link)</span></p>
+        <p class="glass-panel" style="display:inline-block; padding: 10px 20px; border-radius: 20px;">
+            &copy; EDN. Hosted by: <a href="https://facebook.com/pesmatches5" target="_blank" class="footer-link">JON BONZ</a>
+        </p>
     </footer>
 
     <script>
-        // 1. Structural Cost Array Management mapping
+        // --- 1. SPA View Switcher Logic ---
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.view-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show targeted page
+            document.getElementById('page-' + pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // --- 2. Cost Array Management mapping ---
         const categorySelect = document.getElementById('category');
         const amountSelect = document.getElementById('amount');
         
@@ -198,7 +259,7 @@
             });
         });
 
-        // 2. Light & Dark Aesthetic State Controller
+        // --- 3. Light & Dark Aesthetic Controller ---
         const themeBtn = document.getElementById('theme-toggle');
         const layoutBody = document.body;
 

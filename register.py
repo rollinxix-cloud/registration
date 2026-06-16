@@ -1,67 +1,69 @@
+import argparse
 import sys
-import os
-import subprocess
 
-def add_player():
-    # 1. Ensure correct inputs are passed via CMD
-    if len(sys.argv) < 3:
-        print("\n❌ Error: Missing arguments!")
-        print("Usage: python register.py \"Player_Name\" [league / knockout / bet]")
-        print("Example: python register.py \"Anil_eFoot\" league\n")
-        return
+HTML_FILE = 'index.html'
 
-    player_input = sys.argv[1]
-    category = sys.argv[2].lower()
+def get_hook(category, amount):
+    category_clean = 'BET' if category.lower() == '1v1' else category.upper()
+    return f"<!-- {category_clean}_{amount}_HOOK -->"
 
-    # 2. Determine target formatting and hooks
-    if category == "league":
-        hook = ""
-        new_line = f"                <li>{player_input}</li>"
-    elif category == "knockout":
-        hook = ""
-        new_line = f"                <li>{player_input}</li>"
-    elif category == "bet":
-        hook = ""
-        # Expects input format like "Kiran_PES for Rs 100" for bet categories
-        if " for " in player_input:
-            name, amt = player_input.split(" for ", 1)
-            new_line = f"                <li><strong>{name}</strong> is challenging for <strong>{amt}</strong></li>"
-        else:
-            new_line = f"                <li><strong>{player_input}</strong> is actively challenging</li>"
-    else:
-        print("❌ Invalid category! Choose 'league', 'knockout', or 'bet'.")
-        return
-
-    # 3. Read index.html and insert the data
-    html_file = "index.html"
-    if not os.path.exists(html_file):
-        print(f"❌ Error: {html_file} not found in this folder.")
-        return
-
-    with open(html_file, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    if hook not in content:
-        print(f"❌ Error: Code hook {hook} is missing inside index.html!")
-        return
-
-    # Insert the new player right under the matching hook marker
-    updated_content = content.replace(hook, f"{hook}\n{new_line}")
-
-    with open(html_file, "w", encoding="utf-8") as f:
-        f.write(updated_content)
+def add_player(name, category, amount):
+    hook = get_hook(category, amount)
+    new_entry = f"<li>{name}</li>\n                                {hook}"
     
-    print(f"✅ Successfully added {player_input} to {category} slots locally!")
+    with open(HTML_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    if hook not in content:
+        print(f"❌ Error: Hook {hook} not found.")
+        return
+    
+    if f"<li>{name}</li>" in content:
+        print(f"⚠️ Warning: {name} is already listed.")
+        return
 
-    # 4. AUTOMATIC GIT PUSH: Execute system commands automatically
-    print("🚀 Pushing updates directly to GitHub...")
-    try:
-        subprocess.run(["git", "add", "."], check=True)
-        subprocess.run(["git", "commit", "-m", f"Automated registration: {player_input} ({category})"], check=True)
-        subprocess.run(["git", "push", "origin", "main"], check=True)
-        print("💯 100/100! Your live page is officially updated.")
-    except subprocess.CalledProcessError as e:
-        print("⚠️ HTML updated locally, but Git push ran into an issue. Check your connection or Git settings.")
+    new_content = content.replace(hook, new_entry)
+    with open(HTML_FILE, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    print(f"✅ Added: {name} to {category} {amount}")
+
+def remove_player(name, category, amount):
+    with open(HTML_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Target the specific line
+    target_line = f"<li>{name}</li>"
+    if target_line not in content:
+        print(f"❌ Error: {name} not found.")
+        return
+    
+    new_content = content.replace(target_line + "\n                                ", "")
+    # Fallback if there was no newline
+    new_content = new_content.replace(target_line, "")
+    
+    with open(HTML_FILE, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    print(f"🗑️ Removed: {name}")
 
 if __name__ == "__main__":
-    add_player()
+    parser = argparse.ArgumentParser(description="EDN Registration Manager")
+    parser.add_argument("action", choices=["add", "remove", "replace"])
+    parser.add_argument("name", help="Name of the player")
+    parser.add_argument("category", choices=["league", "knockout", "1v1"])
+    parser.add_argument("amount", help="Amount (e.g. 100, 150)")
+    parser.add_argument("new_name", nargs="?", help="New name (required for replace)")
+
+    args = parser.parse_args()
+
+    if args.action == "add":
+        add_player(args.name, args.category, args.amount)
+    
+    elif args.action == "remove":
+        remove_player(args.name, args.category, args.amount)
+        
+    elif args.action == "replace":
+        if not args.new_name:
+            print("❌ Error: 'replace' requires a new name.")
+        else:
+            remove_player(args.name, args.category, args.amount)
+            add_player(args.new_name, args.category, args.amount)
