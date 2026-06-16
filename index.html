@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub & Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">EDN <span>PORTAL</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#events">Active Events</a>
+            <a href="#rules">Guidelines</a>
+            <a href="#register" class="cta-nav">Register Now</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Next Level of Community</h1>
+            <p>Access exclusive tournaments, seamless verification, and a professional gaming ecosystem. Everything you need, centralized in one place.</p>
+            <a href="#register" class="btn-primary">Secure Your Slot</a>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <section id="events" class="section">
+            <h2 class="section-title">Active Events & Schedules</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="badge live">Active</span>
+                    <h3>Elite League Season 6</h3>
+                    <p>Registration is currently open. Secure your entry before slots fill up completely.</p>
+                </div>
+                <div class="card">
+                    <span class="badge upcoming">Upcoming</span>
+                    <h3>Ultimate Championship</h3>
+                    <p>Preparation phase. Detailed prize pools and match formats dropping next week.</p>
+                </div>
+                <div class="card">
+                    <span class="badge closed">Completed</span>
+                    <h3>Hall of Fame Legacy</h3>
+                    <p>Check out our previous season champions and historical community milestones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="section alt-bg">
+            <h2 class="section-title">Community Guidelines</h2>
+            <div class="rules-list">
+                <div class="rule-item">
+                    <span class="rule-number">01</span>
+                    <p><strong>Fair Play & Respect:</strong> Zero tolerance for toxicity, cheating, or unsportsmanlike behavior across all platforms.</p>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-number">02</span>
+                    <p><strong>Verified Accounts Only:</strong> Ensure your registered handles match your social profiles for rapid bracket sorting.</p>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-number">03</span>
+                    <p><strong>Timely Check-ins:</strong> Always report match results or deposit confirmations within the designated time frames.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="section form-section">
+            <div class="form-container">
+                <h2 class="section-title">Official Portal Registration</h2>
+                <p class="form-subtitle">Fill out the official form below to register your handle, submit entry requirements, or join active campaigns.</p>
+                
+                <form action="https://formspree.io/f/xykavnzn" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name / Tag</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fb-profile">Facebook Profile Link</label>
+                        <input type="url" id="fb-profile" name="fb_profile" placeholder="https://facebook.com/username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingame-id">In-Game Name / Unique ID</label>
+                        <input type="text" id="ingame-id" name="ingame_id" placeholder="e.g., PlayerOne#1234" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry-type">Select Registration Target</label>
+                        <select id="entry-type" name="entry_type" required>
+                            <option value="" disabled selected>Choose an option...</option>
+                            <option value="elite-league-s6">Elite League Division S6 Entry</option>
+                            <option value="general-membership">General Verified Member Access</option>
+                            <option value="agent-deposit">Deposit / Transaction Validation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Information / Verification Details</label>
+                        <textarea id="notes" name="additional_info" rows="4" placeholder="Drop transaction reference IDs or extra details here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Submit Registration</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EDN Ecosystem. Powered securely via GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
