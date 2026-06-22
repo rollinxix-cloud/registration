@@ -146,6 +146,32 @@
 
     </main>
 
+    <!-- FLOATING TOURNAMENT STATUS NOTIFICATION -->
+    <div class="floating-notification" id="statusNotification">
+        <button class="close-notification" onclick="document.getElementById('statusNotification').classList.add('hidden');" aria-label="Close notification">×</button>
+        <div class="notification-header">Tournament Status</div>
+        <div class="status-list">
+            <!-- Active Row -->
+            <div class="status-item active-status">
+                <span class="status-dot animate-pulse"></span>
+                <span class="status-label">Active:</span> 
+                <span class="status-value">ULTIMATE PLAYER S12</span>
+            </div>
+            <!-- Upcoming Row -->
+            <div class="status-item upcoming-status">
+                <span class="status-dot"></span>
+                <span class="status-label">Upcoming:</span> 
+                <span class="status-value">ULTIMATE PLAYER S13 <span class="entry-tag">(Entry: ₹150)</span></span>
+            </div>
+            <!-- Completed Row -->
+            <div class="status-item completed-status">
+                <span class="status-dot"></span>
+                <span class="status-label">Completed:</span> 
+                <span class="status-value">PES LEAGUE CAMP S6</span>
+            </div>
+        </div>
+    </div>
+
     <!-- DYNAMIC ROUTER & THEME CONTROLLER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {

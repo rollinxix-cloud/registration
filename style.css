@@ -434,22 +434,19 @@ select option {
 }
 
 /* ==========================================================================
-   RESPONSIVE PHONE MOBILE CONTROLS (Fixes 1000027424.jpg)
+   RESPONSIVE PHONE MOBILE CONTROLS
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Fixed Layout Header Alignment adjustments */
     .navbar {
         padding: 0.75rem 1.25rem;
     }
 
     .menu-toggle { display: flex; }
     
-    /* Toggle icon state updates */
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Fix: Overhauled top dropdown configuration replaces the broken side menu drawer */
     .nav-links {
         position: absolute;
         top: 100%;
@@ -463,7 +460,6 @@ select option {
         gap: 1.25rem;
         border-bottom: 1px solid var(--border-subtle);
         
-        /* Smooth top animation entry to prevent clipping content */
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
@@ -485,7 +481,6 @@ select option {
     }
     .nav-item.active::after { display: none; }
     
-    /* Responsive structural collapse */
     .payment-qr-container {
         flex-direction: column;
         text-align: center;
@@ -499,5 +494,139 @@ select option {
     
     .glass-panel { 
         padding: 1.5rem 1rem; 
+    }
+}
+
+/* ==========================================================================
+   FLOATING NOTIFICATION SYSTEM (SMALL FONT & MICRO-ANIMATION)
+   ========================================================================== */
+.floating-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--panel-glass-spec);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    z-index: 2000;
+    max-width: 310px;
+    width: calc(100% - 48px);
+    
+    animation: floatingBob 3.5s ease-in-out infinite, notificationFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background var(--transition-speed), border var(--transition-speed), opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-notification.hidden {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+    pointer-events: none;
+}
+
+.notification-header {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent-gold);
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.status-item {
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.4;
+}
+
+.status-label {
+    font-weight: 700;
+    color: var(--text-dimmed);
+    min-width: 68px;
+}
+
+.status-value {
+    font-weight: 500;
+}
+
+.entry-tag {
+    color: var(--accent-cyan);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.active-status .status-dot { 
+    background-color: #10b981; 
+    box-shadow: 0 0 8px #10b981; 
+}
+.upcoming-status .status-dot { 
+    background-color: #3b82f6; 
+    box-shadow: 0 0 8px #3b82f6; 
+}
+.completed-status .status-dot { 
+    background-color: #64748b; 
+}
+
+.animate-pulse {
+    animation: dotPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(1.15); }
+}
+
+.close-notification {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-dimmed);
+    font-size: 1.15rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.close-notification:hover {
+    color: var(--text-primary);
+}
+
+@keyframes floatingBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes notificationFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .floating-notification {
+        bottom: 16px;
+        left: 24px;
+        right: 24px;
+        max-width: none;
     }
 }
