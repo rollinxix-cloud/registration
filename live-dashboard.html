@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Player Dashboard - PES MATCHES</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+
+    <header class="navbar">
+        <div class="logo">PES MATCHES</div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#guidelines" class="nav-link">Guidelines</a>
+            <a href="index.html#registration" class="nav-link">Registration Here</a>
+            <a href="live-dashboard.html" class="nav-link active">Live Dashboard</a>
+            <button id="theme-toggle" class="btn-theme">☀️</button>
+        </nav>
+    </header>
+
+    <div class="hero-section" style="padding: 80px 20px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>LIVE PLAYER DASHBOARD</h1>
+            <p>Active players and live tournament matches</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="section">
+            <p class="text-center" style="margin-bottom: 50px; color: var(--text-muted); font-size: 1.1rem;">
+                Track active players across all tournament categories and upcoming matches
+            </p>
+
+            <!-- LEAGUE SECTION -->
+            <div class="dashboard-section">
+                <h2 class="section-title" style="font-size: 2.8rem;">🏆 LEAGUE TOURNAMENT</h2>
+                <div class="amount-filters">
+                    <button class="filter-btn active" data-amount="100">Rs 100</button>
+                    <button class="filter-btn" data-amount="150">Rs 150</button>
+                    <button class="filter-btn" data-amount="200">Rs 200</button>
+                </div>
+
+                <div class="players-grid" id="league-100">
+                    <div class="player-card">
+                        <div class="player-info">
+                            <h4>Jon Bonz</h4>
+                            <span class="entry-badge">Rs 100</span>
+                        </div>
+                        <div class="player-meta">
+                            <p><strong>Status:</strong> <span class="status-active">🟢 Active</span></p>
+                            <p><strong>Registered:</strong> Today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="league-150" style="display: none;">
+                    <div class="empty-state">
+                        <p>No players registered for Rs 150 yet</p>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="league-200" style="display: none;">
+                    <div class="empty-state">
+                        <p>No players registered for Rs 200 yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KNOCKOUT SECTION -->
+            <div class="dashboard-section">
+                <h2 class="section-title" style="font-size: 2.8rem;">⚔️ KNOCKOUT TOURNAMENT</h2>
+                <div class="amount-filters">
+                    <button class="filter-btn active" data-amount="150">Rs 150</button>
+                    <button class="filter-btn" data-amount="200">Rs 200</button>
+                    <button class="filter-btn" data-amount="300">Rs 300</button>
+                </div>
+
+                <div class="players-grid" id="knockout-150">
+                    <div class="player-card">
+                        <div class="player-info">
+                            <h4>Sabin_Gamer</h4>
+                            <span class="entry-badge">Rs 150</span>
+                        </div>
+                        <div class="player-meta">
+                            <p><strong>Status:</strong> <span class="status-active">🟢 Active</span></p>
+                            <p><strong>Registered:</strong> Today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="knockout-200" style="display: none;">
+                    <div class="empty-state">
+                        <p>No players registered for Rs 200 yet</p>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="knockout-300" style="display: none;">
+                    <div class="empty-state">
+                        <p>No players registered for Rs 300 yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1v1 BET SECTION -->
+            <div class="dashboard-section">
+                <h2 class="section-title" style="font-size: 2.8rem;">🔥 1V1 BET CHALLENGES</h2>
+                <div class="amount-filters">
+                    <button class="filter-btn active" data-amount="50">Rs 50</button>
+                    <button class="filter-btn" data-amount="100">Rs 100</button>
+                    <button class="filter-btn" data-amount="150">Rs 150</button>
+                    <button class="filter-btn" data-amount="200">Rs 200</button>
+                </div>
+
+                <div class="players-grid" id="bet-50">
+                    <div class="empty-state">
+                        <p>No active challenges for Rs 50</p>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="bet-100" style="display: none;">
+                    <div class="empty-state">
+                        <p>No active challenges for Rs 100</p>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="bet-150" style="display: none;">
+                    <div class="bet-card">
+                        <div class="bet-info">
+                            <h4>Niranjan</h4>
+                            <span class="challenge-badge">🔥 Challenging</span>
+                        </div>
+                        <div class="challenge-meta">
+                            <p><strong>Amount:</strong> <span class="amount">Rs 150</span></p>
+                            <p><strong>Status:</strong> <span class="status-active">🟢 Awaiting Opponent</span></p>
+                            <p><strong>Posted:</strong> Today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="players-grid" id="bet-200" style="display: none;">
+                    <div class="empty-state">
+                        <p>No active challenges for Rs 200</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- INSTRUCTIONS SECTION -->
+        <section class="section">
+            <div class="info-box">
+                <h3>📋 How to Use Live Dashboard</h3>
+                <ul style="margin-top: 20px; padding-left: 25px; line-height: 2;">
+                    <li><strong>Filter by Amount:</strong> Click on the amount buttons to see players registered for that entry fee</li>
+                    <li><strong>League Matches:</strong> Players competing in round-robin tournament format</li>
+                    <li><strong>Knockout:</strong> Players in elimination-style bracket matches</li>
+                    <li><strong>1v1 Bets:</strong> Direct challenges between two players</li>
+                    <li><strong>Live Updates:</strong> This dashboard updates as new players register</li>
+                </ul>
+            </div>
+
+            <div class="alert-box" style="margin-top: 40px;">
+                <div class="alert-icon">🚨</div>
+                <div class="alert-content">
+                    <strong>Remember:</strong>
+                    <p>After completing your match, post the full-time result screenshot immediately to our <a href="https://facebook.com/pesmatches5" target="_blank" style="color: var(--accent-blue); font-weight: 700;">Facebook Group: P.E.S MATCHES</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 P.E.S MATCHES - eFootball Tournament Platform</p>
+        <p><a href="index.html" class="footer-link">← Back to Home</a></p>
+    </footer>
+
+    <script>
+        // League Filters
+        document.querySelectorAll('#league-filters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const amount = this.dataset.amount;
+                document.querySelectorAll('.league-players').forEach(el => el.style.display = 'none');
+                document.getElementById(`league-${amount}`).style.display = 'grid';
+                
+                document.querySelectorAll('#league-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Create filter buttons dynamically for each section
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            const filterBtns = section.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const amount = this.dataset.amount;
+                    const sectionType = this.closest('.dashboard-section').querySelector('h2').textContent.toLowerCase();
+                    
+                    let type = '';
+                    if (sectionType.includes('league')) type = 'league';
+                    else if (sectionType.includes('knockout')) type = 'knockout';
+                    else if (sectionType.includes('1v1')) type = 'bet';
+                    
+                    const containerId = `${type}-${amount}`;
+                    const container = document.getElementById(containerId);
+                    
+                    if (container) {
+                        // Hide all grids in this section
+                        section.querySelectorAll('.players-grid, .bet-card').forEach(el => {
+                            if (el.classList.contains('players-grid')) {
+                                el.style.display = 'none';
+                            }
+                        });
+                        
+                        // Show selected
+                        container.style.display = 'grid';
+                        
+                        // Update active state
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Restore saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+    </script>
+
+    <style>
+        .dashboard-section {
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 2px solid;
+        }
+
+        body.dark-mode .dashboard-section {
+            border-bottom-color: var(--border-dark);
+        }
+
+        body.light-mode .dashboard-section {
+            border-bottom-color: var(--border-light);
+        }
+
+        .dashboard-section:last-child {
+            border-bottom: none;
+        }
+
+        .amount-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--accent-gold);
+            background: transparent;
+            color: var(--accent-gold);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        body.light-mode .filter-btn {
+            border-color: #b45309;
+            color: #b45309;
+        }
+
+        .filter-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        body.light-mode .filter-btn:hover {
+            background: #b45309;
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        body.light-mode .filter-btn.active {
+            background: #b45309;
+            color: #fff;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .player-card,
+        .bet-card {
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-blue);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .player-card,
+        body.dark-mode .bet-card {
+            background: var(--bg-card-dark);
+            border-top: 1px solid var(--border-dark);
+            border-right: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        body.light-mode .player-card,
+        body.light-mode .bet-card {
+            background: var(--bg-card-light);
+            border-top: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .player-card:hover,
+        .bet-card:hover {
+            transform: translateY(-5px);
+        }
+
+        body.dark-mode .player-card:hover,
+        body.dark-mode .bet-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+        }
+
+        body.light-mode .player-card:hover,
+        body.light-mode .bet-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-info,
+        .bet-info {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid;
+        }
+
+        body.dark-mode .player-info,
+        body.dark-mode .bet-info {
+            border-bottom-color: var(--border-dark);
+        }
+
+        body.light-mode .player-info,
+        body.light-mode .bet-info {
+            border-bottom-color: var(--border-light);
+        }
+
+        .player-info h4,
+        .bet-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        body.light-mode .player-info h4,
+        body.light-mode .bet-info h4 {
+            color: var(--text-light);
+        }
+
+        .entry-badge,
+        .challenge-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .entry-badge {
+            background: rgba(0, 180, 216, 0.15);
+            color: var(--accent-blue);
+        }
+
+        body.light-mode .entry-badge {
+            color: #0284c7;
+        }
+
+        .challenge-badge {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        body.light-mode .challenge-badge {
+            color: #dc2626;
+        }
+
+        .player-meta,
+        .challenge-meta {
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+
+        .player-meta p,
+        .challenge-meta p {
+            margin: 5px 0;
+        }
+
+        .player-meta strong,
+        .challenge-meta strong {
+            color: var(--accent-gold);
+        }
+
+        body.light-mode .player-meta strong,
+        body.light-mode .challenge-meta strong {
+            color: #b45309;
+        }
+
+        .status-active {
+            color: #4ade80;
+            font-weight: 700;
+        }
+
+        .amount {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        body.light-mode .amount {
+            color: #dc2626;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 30px;
+            background: rgba(0, 180, 216, 0.05);
+            border-radius: 8px;
+            border: 2px dashed;
+        }
+
+        body.dark-mode .empty-state {
+            border-color: var(--border-dark);
+        }
+
+        body.light-mode .empty-state {
+            border-color: var(--border-light);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .empty-state p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .info-box {
+            background: rgba(0, 180, 216, 0.08);
+            border: 2px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        body.light-mode .info-box {
+            background: rgba(2, 132, 199, 0.05);
+            border-color: #0284c7;
+        }
+
+        .info-box h3 {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+        }
+
+        body.light-mode .info-box h3 {
+            color: #0284c7;
+        }
+
+        .info-box ul li {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .amount-filters {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-section {
+                margin-bottom: 60px;
+            }
+        }
+    </style>
+</body>
+</html>

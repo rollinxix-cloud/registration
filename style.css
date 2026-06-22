@@ -1,147 +1,222 @@
 /* ==========================================================================
-   Gaming Platform Stylesheet - Premium Custom Design
+   GLOBAL STYLE VARTOKENS & DESIGN CORE SYSTEM
    ========================================================================== */
 :root {
-    --bg-dark: #070a12;
-    --text-white: #ffffff;
-    --text-muted: #94a3b8;
-    --accent-cyan: #00b4d8;
-    --accent-yellow: #ffd700;
-    --font-heading: 'Teko', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --transition: all 0.25s ease-in-out;
+    /* Semantic Dark Layout Palette */
+    --bg-main: #040710;
+    --panel-glass: rgba(10, 16, 32, 0.72);
+    --border-alpha: rgba(255, 255, 255, 0.06);
+    --input-core: rgba(255, 255, 255, 0.02);
+
+    /* Light Mode Alternative Layout Vectors */
+    --bg-light: #f8fafc;
+    --panel-light: rgba(255, 255, 255, 0.85);
+    --border-light: rgba(15, 23, 42, 0.08);
+    --input-light: #ffffff;
+
+    /* High Contrast Accent Mapping */
+    --cyan-glow: #00b4d8;
+    --gold-esports: #ffd700;
+    --text-primary: #f8fafc;
+    --text-dimmed: #94a3b8;
+
+    /* System Typography Standards */
+    --font-display: 'Teko', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    /* Hardware Accelerated Micro-Transitions */
+    --timing-core: 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* HIGH-PERFORMANCE RESET LAYER */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+}
 
 body {
     font-family: var(--font-body);
-    color: var(--text-white);
-    background-color: var(--bg-dark);
-    /* Your local image background setup */
-    background-image: linear-gradient(rgba(7, 10, 18, 0.85), rgba(7, 10, 18, 0.95)), url('stadium-bg.jpg');
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    /* Multi-layered optimization engine for spatial rendering depth */
+    background-image: linear-gradient(rgba(4, 7, 16, 0.86), rgba(4, 7, 16, 0.95)), url('stadium-bg.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
     overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================================================
-   NAVIGATION BAR (Fixes spacing bugs from image 1000027420.jpg)
+   LIGHT MODE DESIGN SPECIFICATIONS (Brightened Overlay Layout Engine)
    ========================================================================== */
+body.light-mode {
+    background-color: var(--bg-light);
+    background-image: linear-gradient(rgba(248, 250, 252, 0.88), rgba(248, 250, 252, 0.92)), url('stadium-bg.jpg');
+    color: #0f172a;
+}
+body.light-mode .text-dimmed { color: #475569; }
+body.light-mode .navbar { background: rgba(248, 250, 252, 0.92); border-color: var(--border-light); }
+body.light-mode .nav-item { color: #1e293b; }
+body.light-mode .logo { color: #b45309; } /* Safe accessible visual rendering balance */
+body.light-mode .hero-title, body.light-mode .section-title { color: #b45309; }
+body.light-mode .glass-panel, body.light-mode .rule-card { 
+    background: var(--panel-light); 
+    border-color: var(--border-light);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+}
+body.light-mode input, body.light-mode select { background: var(--input-light); border-color: #cbd5e1; color: #0f172a; }
+body.light-mode input:focus { border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12); }
+
+/* ==========================================================================
+   LAYOUT STRUCTURES & ARCHITECTURE COMPONENTS
+   ========================================================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
-    background: rgba(7, 10, 18, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 2rem;
+    background: rgba(4, 7, 16, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-alpha);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background var(--timing-core);
 }
 
-/* Stacked logo layout matching original interface asset */
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-family: var(--font-display);
+    font-size: 1.65rem;
     font-weight: 700;
-    line-height: 0.9;
-    color: var(--accent-yellow);
+    line-height: 0.85;
+    color: var(--gold-esports);
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition: opacity var(--timing-core);
 }
-.logo span { color: #fff; }
-.logo:hover { opacity: 0.85; transform: scale(0.98); }
+.logo span { color: #ffffff; }
+.logo:hover { opacity: 0.85; }
 
 .nav-links {
     display: flex;
-    gap: 25px;
-    align-items: center;
+    gap: 1.75rem;
 }
 
 .nav-item {
-    color: var(--text-white);
+    color: #ffffff;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     position: relative;
-    padding: 5px 0;
-    transition: var(--transition);
-    opacity: 0.75;
+    padding: 0.4rem 0;
+    opacity: 0.72;
+    transition: opacity var(--timing-core), color var(--timing-core);
 }
 .nav-item:hover, .nav-item.active {
     opacity: 1;
-    color: var(--accent-cyan);
+    color: var(--cyan-glow);
 }
-
-/* Underline tracker element logic */
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--accent-cyan);
+    background: var(--cyan-glow);
+    border-radius: 2px;
 }
 
+/* ACCESSIBLE ACCELERATED BURGER INTERACTION SWITCH */
 .menu-toggle {
     display: none;
-    background: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 16px;
+    background: transparent;
     border: none;
-    color: #fff;
-    font-size: 2rem;
     cursor: pointer;
-    z-index: 1001;
+}
+.menu-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 /* ==========================================================================
-   INTERACTIVE APPLICATION PAGES CONTENT CONTROLLER
+   DYNAMIC APP ROUTER DISPLAY AND GLASS PANELS
    ========================================================================== */
 .page-section {
-    display: none; /* Keeps auxiliary sections clean and out of the default view */
-    margin-top: 40px;
+    display: none;
+    margin: 2.5rem 0;
+    opacity: 0;
+    transform: translateY(12px);
 }
 .page-section.active {
-    display: block; /* Shows only the targeted functional page content block */
+    display: block;
+    animation: sectionFadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Glass panel wrapper styles for Guidelines, forms and tables */
+@keyframes sectionFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .glass-panel {
-    background: rgba(15, 23, 42, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: var(--panel-glass);
+    border: 1px solid var(--border-alpha);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .section-title {
-    font-family: var(--font-heading);
-    font-size: 2.8rem;
-    color: var(--accent-yellow);
-    margin-bottom: 20px;
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--gold-esports);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.section-desc {
+    color: var(--text-dimmed);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
 }
 
 /* ==========================================================================
-   HOME VIEW HERO REGION (Exact 1:1 Match to Red Circle Frame)
+   HOME VIEW HERO GRID (Fluid Design System Core)
    ========================================================================== */
 #page-home {
-    min-height: calc(80vh - 100px);
+    min-height: calc(82vh - 70px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,119 +224,175 @@ body {
 }
 
 .hero-wrapper {
-    max-width: 700px;
+    max-width: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .pill-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    border: 1px solid var(--accent-cyan);
-    background: rgba(0, 180, 216, 0.08);
-    color: var(--accent-cyan);
-    padding: 6px 16px;
-    border-radius: 50px;
+    gap: 0.5rem;
+    border: 1px solid rgba(0, 180, 216, 0.25);
+    background: rgba(0, 180, 216, 0.05);
+    color: var(--cyan-glow);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: 0.8rem;
     letter-spacing: 1.5px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.15);
+    margin-bottom: 1.5rem;
 }
 
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: 5.5rem;
-    line-height: 0.95;
-    font-weight: 700;
-    color: var(--accent-yellow);
-    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 9vw, 5.8rem);
+    line-height: 0.92;
+    color: var(--gold-esports);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    margin-bottom: 1.25rem;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 35px;
-    max-width: 500px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-dimmed);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
 }
 
 .btn-primary {
-    background: #00b4d8;
     background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-    color: #fff;
+    color: #ffffff;
     border: none;
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    padding: 12px 40px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    padding: 0.75rem 2.5rem;
     border-radius: 4px;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.35);
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3);
+    transition: transform var(--timing-core), box-shadow var(--timing-core);
 }
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 25px rgba(0, 180, 216, 0.5);
 }
 
-/* Fade animation engine layout configuration */
-.animate-fade {
-    animation: fadeIn 0.4s ease-out forwards;
+/* ==========================================================================
+   INPUTS & REGISTRATION FORMS ARCHITECTURE
+   ========================================================================== */
+.form-wrapper { max-width: 800px; margin: 0 auto; }
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group.full-width { grid-column: span 2; }
+
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.2px;
 }
 
+input[type="text"], input[type="tel"], select {
+    width: 100%;
+    background: var(--input-core);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color var(--timing-core), box-shadow var(--timing-core), background var(--timing-core);
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--cyan-glow);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+}
+
+/* Custom Select Drop Arrow Fixing Override */
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+    content: '▾'; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+    color: var(--text-dimmed); pointer-events: none; font-size: 0.8rem;
+}
+select { appearance: none; padding-right: 2.5rem; }
+
+/* RULES & DASHBOARD COMPONENT GRIDS */
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.rule-card {
+    background: var(--panel-glass);
+    border: 1px solid var(--border-alpha);
+    border-top: 3px solid var(--cyan-glow);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform var(--timing-core), background var(--timing-core);
+}
+.rule-card:hover { transform: translateY(-3px); background: rgba(14, 22, 44, 0.8); }
+.rule-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.rule-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
+.rule-card p { font-size: 0.88rem; color: var(--text-dimmed); line-height: 1.5; }
+
+.dashboard-grid { max-width: 650px; margin: 0 auto; }
+.status-card { border-left: 4px solid var(--gold-esports); }
+.tier-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+.tier-badge { font-family: var(--font-display); font-size: 1.2rem; color: var(--gold-esports); letter-spacing: 0.5px; }
+.match-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.match-row:last-child { border-bottom: none; }
+.match-row .player { font-weight: 500; font-size: 0.95rem; }
+.match-row .vs-label { font-size: 0.75rem; color: var(--text-dimmed); text-transform: uppercase; font-weight: 700; }
+.badge { font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
+.badge-live { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+.badge-delay { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.2); }
+
 /* ==========================================================================
-   MOBILE LAYOUT ENGINE (Fixes spacing limitations gracefully)
+   MOBILE INTERACTION & RESPONSIVE DRAWER TRANSFORM CONTROLLER
    ========================================================================== */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Displays modern drop drawer toggle switch indicator */
-    }
+    .menu-toggle { display: flex; }
+    
+    /* Animation classes for the structural hamburger button lines */
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .nav-links {
         position: fixed;
-        top: 73px;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: calc(100vh - 73px);
-        background: rgba(10, 14, 23, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        top: 61px;
+        right: 0;
+        width: 280px;
+        height: calc(100vh - 61px);
+        background: rgba(4, 7, 16, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
         flex-direction: column;
-        align-items: flex-start;
-        padding: 40px 30px;
-        gap: 30px;
-        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
-        z-index: 999;
+        padding: 2.5rem 2rem;
+        gap: 1.75rem;
+        border-left: 1px solid var(--border-alpha);
+        /* Hardware accelerated shifting matrices instead of layout spacing properties */
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .nav-links.open {
-        right: 0; /* Smooth slide-in navigation panel layout presentation overlay */
+        transform: translateX(0);
     }
 
-    .nav-item {
-        font-size: 1.3rem;
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .hero-title {
-        font-size: 3.8rem;
-    }
+    .nav-item { font-size: 1.1rem; width: 100%; padding: 0.5rem 0; }
+    .nav-item.active::after { display: none; }
     
-    .hero-subtitle {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
+    .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .form-group.full-width { grid-column: span 1; }
+    .glass-panel { padding: 1.75rem 1.25rem; }
 }

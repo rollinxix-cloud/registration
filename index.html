@@ -3,112 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PES Matches - eFootball Platform</title>
-    <!-- Teko & Inter Fonts for a clean professional gaming look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+    <meta name="description" content="PES Matches - Premium eFootball Competitive Tournament Hosting Platform">
+    <title>PES Matches — eFootball Tournament Platform</title>
+    
+    <!-- Resource Hints: Preconnect to optimize DNS handshake performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR SECTION -->
+    <!-- GLOBAL SITE HEADER -->
     <header class="navbar">
-        <!-- Clicking this opens your Facebook Group in a new tab -->
-        <a href="https://facebook.com/groups/pesmatches" target="_blank" class="logo">
+        <a href="https://facebook.com/groups/pesmatches" target="_blank" rel="noopener noreferrer" class="logo" aria-label="PES Matches Facebook Group">
             PES <br><span>MATCHES</span>
         </a>
 
-        <!-- Mobile-friendly Navigation Controls -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
-        <nav class="nav-links" id="navLinks">
-            <a href="#" class="nav-item active" onclick="switchPage('home')">Home</a>
-            <a href="#" class="nav-item" onclick="switchPage('guidelines')">Guidelines</a>
-            <a href="#" class="nav-item" onclick="switchPage('registration')">Registration Here</a>
-            <a href="#" class="nav-item" onclick="switchPage('dashboard')">Live Dashboard</a>
+        <!-- ARIA-Driven Mobile Controls -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navLinks">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        
+        <nav class="nav-links" id="navLinks" aria-label="Main Directory">
+            <a href="#" class="nav-item active" data-target="home" role="button">Home</a>
+            <a href="#" class="nav-item" data-target="guidelines" role="button">Guidelines</a>
+            <a href="#" class="nav-item" data-target="registration" role="button">Registration Here</a>
+            <a href="#" class="nav-item" data-target="dashboard" role="button">Live Dashboard</a>
         </nav>
     </header>
 
+    <!-- CONTENT WRAPPER -->
     <main class="container">
         
-        <!-- ==========================================
-             HOME / DEFAULT VIEW (Circled in Red)
-             ========================================== -->
-        <section id="page-home" class="page-section active animate-fade">
+        <!-- SECTION: HOME (Matched 1:1 to Highlight Frames) -->
+        <section id="page-home" class="page-section active" aria-live="polite">
             <div class="hero-wrapper">
                 <div class="pill-badge">
-                    <span>⚽</span> EFOOTBALL TOURNAMENT PLATFORM
+                    <span class="icon-pulse" aria-hidden="true">⚽</span> EFOOTBALL TOURNAMENT PLATFORM
                 </div>
-                
                 <h1 class="hero-title">ENTER THE PITCH</h1>
-                
                 <p class="hero-subtitle">
-                    Register for tournaments, validate your entry, and compete live
+                    Register for tournaments, validate your entry, and compete live with elite global operators.
                 </p>
-                
-                <button class="btn-primary" onclick="switchPage('registration')">
+                <button class="btn-primary" type="button" onclick="document.querySelector('[data-target=\'registration\']').click();">
                     START REGISTRATION
                 </button>
             </div>
         </section>
 
-        <!-- ==========================================
-             REPRESENTATIVE PAGES (Hidden until Selected)
-             ========================================== -->
-        <section id="page-guidelines" class="page-section glass-panel">
-            <h2 class="section-title">Tournament Rules & Guidelines</h2>
-            <!-- Your rules layout goes here -->
+        <!-- SECTION: GUIDELINES -->
+        <section id="page-guidelines" class="page-section" aria-live="polite">
+            <div class="section-header">
+                <h2 class="section-title">Tournament Rules & Guidelines</h2>
+                <p class="section-desc">Review standard server parameters and regulatory mechanics before queuing.</p>
+            </div>
+            
+            <div class="rules-grid">
+                <article class="rule-card">
+                    <div class="rule-icon" aria-hidden="true">⏱️</div>
+                    <h3>Match Allocation</h3>
+                    <p>All tournament fixtures are strictly bound to **12 Minutes** in length. Maintain configuration integrity throughout match sessions.</p>
+                </article>
+                <article class="rule-card">
+                    <div class="rule-icon" aria-hidden="true">📶</div>
+                    <h3>Network Thresholds</h3>
+                    <p>Stable connectivity parameters are mandatory. Intentional drop tactics result in immediate, non-negotiable default concessions.</p>
+                </article>
+                <article class="rule-card">
+                    <div class="rule-icon" aria-hidden="true">🛡️</div>
+                    <h3>Roster Integrity</h3>
+                    <p>Only authentic client accounts logged on official software lines are allowed. Exploits or unsanctioned modifications trigger permanent restrictions.</p>
+                </article>
+                <article class="rule-card">
+                    <div class="rule-icon" aria-hidden="true">🤝</div>
+                    <h3>Competitive Conduct</h3>
+                    <p>Toxic behavior or harassment toward administrators or players causes an instant removal from active bracket pools.</p>
+                </article>
+            </div>
         </section>
 
-        <section id="page-registration" class="page-section glass-panel">
-            <h2 class="section-title">Tournament Registration</h2>
-            <!-- Your form code layout goes here -->
+        <!-- SECTION: REGISTRATION -->
+        <section id="page-registration" class="page-section" aria-live="polite">
+            <div class="form-wrapper glass-panel">
+                <div class="section-header">
+                    <h2 class="section-title">Tournament Registration</h2>
+                    <p class="section-desc">Submit precise identity values below to initialize database placement.</p>
+                </div>
+
+                <form id="regForm" autocomplete="on">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="playerName">Player Handle Name</label>
+                            <input type="text" id="playerName" name="username" placeholder="e.g., Jon_Bonz" required maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <label for="efootballId">eFootball Owner ID</label>
+                            <input type="text" id="efootballId" name="gameid" placeholder="e.g., 123-456-789" required pattern="[0-9\-]+">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNo">WhatsApp Signal Line</label>
+                            <input type="tel" id="contactNo" name="phone" placeholder="e.g., +977 98XXXXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="platform">Deployment Platform</label>
+                            <div class="select-wrapper">
+                                <select id="platform" name="platform" required>
+                                    <option value="" disabled selected>Select system layout</option>
+                                    <option value="mobile">eFootball Mobile</option>
+                                    <option value="pc">PC (Steam Core)</option>
+                                    <option value="console">PlayStation / Xbox Core</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width" style="margin-top: 1.25rem;">
+                        <label for="teamName">Clan / Franchise Association (Optional)</label>
+                        <input type="text" id="teamName" name="team" placeholder="e.g., EDN Esports">
+                    </div>
+                    <div style="text-align: center; margin-top: 2.5rem;">
+                        <button type="submit" class="btn-primary form-submit-btn">PROCEED WITH SUBMISSION</button>
+                    </div>
+                </form>
+            </div>
         </section>
 
-        <section id="page-dashboard" class="page-section glass-panel">
-            <h2 class="section-title">Live Match Dashboard</h2>
-            <!-- Your active tournament ladders / python hook lists go here -->
-            <!-- Example: <!-- LEAGUE_150_HOOK --> -->
+        <!-- SECTION: LIVE DASHBOARD -->
+        <section id="page-dashboard" class="page-section" aria-live="polite">
+            <div class="section-header">
+                <h2 class="section-title">Live Match Dashboard</h2>
+                <p class="section-desc">Real-time bracket updates and tier arrays monitored live via administrative instances.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="glass-panel status-card">
+                    <div class="tier-header">
+                        <span class="tier-badge">ELITE LEAGUE TRACKER</span>
+                        <span class="live-pulse"></span>
+                    </div>
+                    <div class="match-row">
+                        <span class="player">Roster_Alpha</span>
+                        <span class="vs-label">vs</span>
+                        <span class="player">Roster_Bravo</span>
+                        <span class="badge badge-live">LIVE</span>
+                    </div>
+                    <div class="match-row">
+                        <span class="player">Roster_Charlie</span>
+                        <span class="vs-label">vs</span>
+                        <span class="player">Roster_Delta</span>
+                        <span class="badge badge-delay">QUEUED</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
 
-    <!-- UI Core Logic Script (Handles Mobile Menu & Page Switching seamlessly) -->
+    <!-- PERFORMANCE LOGIC CORE -->
     <script>
-        // Toggle mobile navigation menu expansion
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.page-section');
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            menuToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+            // Optimized Mobile Drop Navigation Toggle
+            const toggleMenu = () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('open');
+                menuToggle.classList.toggle('active');
+            };
+
+            menuToggle.addEventListener('click', toggleMenu);
+
+            // Single Event Loop Routing Mechanism
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = item.getAttribute('data-target');
+
+                    // Reset navigational classes
+                    navItems.forEach(link => link.classList.remove('active'));
+                    item.classList.add('active');
+
+                    // Close menu drawers if deployed on mobile
+                    if(navLinks.classList.contains('open')) toggleMenu();
+
+                    // Execution block for views transition
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if(section.id === `page-${targetPage}`) {
+                            section.classList.add('active');
+                        }
+                    });
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
         });
-
-        // Dynamic page section router
-        function switchPage(pageId) {
-            // Close mobile navigation menu layout after choosing a selection
-            navLinks.classList.remove('open');
-            menuToggle.textContent = '☰';
-
-            // Hide all active view panels
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Remove highlighted states on nav items
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Display selected target panel view
-            const targetPage = document.getElementById(`page-${pageId}`);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            // Keep track of visually highlighted options in the top navigation bar
-            const clickedLink = Array.from(document.querySelectorAll('.nav-item')).find(el => el.textContent.toLowerCase().includes(pageId === 'home' ? 'home' : pageId.substring(0,4)));
-            if (clickedLink) clickedLink.classList.add('active');
-        }
     </script>
 </body>
 </html>
