@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PES Matches - Premium eFootball Tournament Hosting Platform">
+    <meta name="description" content="EDN PES Matches - Premium eFootball Tournament Platform">
     <title>PES Matches — Enter The Pitch</title>
     
-    <!-- Preconnect to optimize font delivery performance -->
+    <!-- Preconnect fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700&display=swap" rel="stylesheet">
@@ -21,11 +21,20 @@
             PES <br><span>MATCHES</span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navLinks">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+        <div class="nav-actions">
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle Light/Dark Theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.22" x2="5.64" y2="17.78"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+
+            <!-- Responsive Mobile Menu Trigger -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navLinks">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
         
         <nav class="nav-links" id="navLinks" aria-label="Main Directory">
             <a href="#" class="nav-item active" data-target="home" role="button">Home</a>
@@ -36,7 +45,7 @@
     <!-- MAIN INTERACTIVE CONTAINER -->
     <main class="container">
         
-        <!-- SECTION: HOME VIEW (Strictly matching your red circle scope) -->
+        <!-- SECTION: HOME VIEW -->
         <section id="page-home" class="page-section active" aria-live="polite">
             <div class="hero-wrapper">
                 <div class="pill-badge">
@@ -44,7 +53,7 @@
                 </div>
                 <h1 class="hero-title">ENTER THE PITCH</h1>
                 <p class="hero-subtitle">
-                    Register for tournaments, validate your entry, and compete live with elite global operators.
+                    Register for tournaments, validate your entry, and compete live with elite regional players.
                 </p>
                 <button class="btn-primary" type="button" id="heroRegisterBtn">
                     START REGISTRATION
@@ -57,32 +66,54 @@
             <div class="form-wrapper glass-panel">
                 <div class="section-header">
                     <h2 class="section-title">Tournament Registration</h2>
-                    <p class="section-desc">Submit your payment verification and player data details to secure your bracket slot.</p>
+                    <p class="section-desc">Scan the eSewa QR below, make your payment, and fill out your information to secure your bracket slot.</p>
                 </div>
 
-                <form id="regForm" autocomplete="on">
+                <!-- eSewa Merchant QR Presentation Area -->
+                <div class="payment-qr-container">
+                    <div class="qr-card">
+                        <img src="esewa-qr.jpg" alt="eSewa Merchant QR Code" class="qr-image" onerror="this.style.display='none'; document.getElementById('qr-fallback').style.display='flex';">
+                        <div id="qr-fallback" class="qr-placeholder" style="display:none;">
+                            <span class="qr-icon">📱</span>
+                            <p><strong>eSewa QR Code Place</strong></p>
+                            <p class="qr-sub">Replace 'esewa-qr.jpg' with your real QR image</p>
+                        </div>
+                    </div>
+                    <div class="payment-instructions">
+                        <h3>How to Pay:</h3>
+                        <ul>
+                            <li>Scan the QR code using your eSewa app.</li>
+                            <li>Enter the required entry fee amount.</li>
+                            <li>Keep a copy of your <strong>Transaction Code</strong>.</li>
+                            <li>Fill out and submit the form below.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Setup Formspree here to get immediate email alerts directly to your inbox -->
+                <form id="regForm" action="https://formspree.io/f/xykavnzn" method="POST" autocomplete="on">
                     <div class="form-grid">
                         <!-- Input Field: Name -->
                         <div class="form-group">
                             <label for="playerName">Name</label>
-                            <input type="text" id="playerName" name="username" placeholder="Your full name or in-game nickname" required maxlength="60">
+                            <input type="text" id="playerName" name="Name" placeholder="Your full name or in-game name" required maxlength="60">
                         </div>
                         
                         <!-- Input Field: Facebook Link -->
                         <div class="form-group">
                             <label for="fbLink">Facebook Link</label>
-                            <input type="url" id="fbLink" name="facebook_url" placeholder="e.g., https://facebook.com/username" required>
+                            <input type="url" id="fbLink" name="Facebook_Link" placeholder="e.g., https://facebook.com/username" required>
                         </div>
                         
-                        <!-- Input Field: Tournament Type -->
+                        <!-- Input Field: Tournament Type Dropdown -->
                         <div class="form-group">
                             <label for="tournamentType">Tournament Type</label>
                             <div class="select-wrapper">
-                                <select id="tournamentType" name="tournament_type" required>
+                                <select id="tournamentType" name="Tournament_Type" required>
                                     <option value="" disabled selected>Select tournament style</option>
-                                    <option value="solo_1v1">Solo 1v1 Bracket</option>
-                                    <option value="coop_2v2">Co-Op 2v2 Bracket</option>
-                                    <option value="elite_league">Elite League Division</option>
+                                    <option value="League Tournament">League Tournament</option>
+                                    <option value="Knockout Tournament">Knockout Tournament</option>
+                                    <option value="1v1 bet">1v1 bet</option>
                                 </select>
                             </div>
                         </div>
@@ -90,25 +121,19 @@
                         <!-- Input Field: Amount -->
                         <div class="form-group">
                             <label for="payAmount">Amount</label>
-                            <input type="text" id="payAmount" name="amount" placeholder="e.g., Rs. 150" required>
+                            <input type="text" id="payAmount" name="Amount" placeholder="e.g., Rs. 150" required>
                         </div>
-                        
-                        <!-- Input Field: Esewa or Khalti Dropdown Selector -->
+
+                        <!-- Fixed Explicit eSewa Info Block -->
                         <div class="form-group">
-                            <label for="paymentMethod">Esewa or Khalti</label>
-                            <div class="select-wrapper">
-                                <select id="paymentMethod" name="payment_gateway" required>
-                                    <option value="" disabled selected>Select payment wallet</option>
-                                    <option value="esewa">eSewa Wallet</option>
-                                    <option value="khalti">Khalti Wallet</option>
-                                </select>
-                            </div>
+                            <label for="paymentMethod">Payment Method</label>
+                            <input type="text" id="paymentMethod" name="Payment_Gateway" value="eSewa Wallet" readonly class="readonly-input">
                         </div>
                         
                         <!-- Input Field: Transaction Code -->
                         <div class="form-group">
                             <label for="txCode">Transaction Code</label>
-                            <input type="text" id="txCode" name="transaction_code" placeholder="Enter your transaction reference ID" required>
+                            <input type="text" id="txCode" name="Transaction_Code" placeholder="Enter your eSewa transaction reference ID" required>
                         </div>
                     </div>
 
@@ -121,7 +146,7 @@
 
     </main>
 
-    <!-- DYNAMIC ROUTER CONTROLLER SCRIPT -->
+    <!-- DYNAMIC ROUTER & THEME CONTROLLER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menuToggle');
@@ -129,8 +154,9 @@
             const navItems = document.querySelectorAll('.nav-item');
             const sections = document.querySelectorAll('.page-section');
             const heroRegisterBtn = document.getElementById('heroRegisterBtn');
+            const themeToggle = document.getElementById('themeToggle');
 
-            // Responsive Mobile Open/Close Toggle
+            // Responsive Mobile Top Dropdown Menu Toggle Handler
             const toggleMenu = () => {
                 const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
                 menuToggle.setAttribute('aria-expanded', !isExpanded);
@@ -140,9 +166,8 @@
 
             menuToggle.addEventListener('click', toggleMenu);
 
-            // Page Routing Engine Fixes (Eliminates layout tracking gaps completely)
+            // Page Routing Engine Fixes
             const switchView = (targetPageId) => {
-                // Instantly clean active nav text styles
                 navItems.forEach(link => {
                     link.classList.remove('active');
                     if(link.getAttribute('data-target') === targetPageId) {
@@ -150,7 +175,6 @@
                     }
                 });
 
-                // Clear layout view elements
                 sections.forEach(section => {
                     section.classList.remove('active');
                     if(section.id === `page-${targetPageId}`) {
@@ -158,7 +182,6 @@
                     }
                 });
 
-                // Smooth snapping to topmost coordinates
                 window.scrollTo({ top: 0, behavior: 'auto' });
             };
 
@@ -171,12 +194,23 @@
                 });
             });
 
-            // Connect Home Page Main CTA button cleanly
             if(heroRegisterBtn) {
                 heroRegisterBtn.addEventListener('click', () => {
                     switchView('registration');
                 });
             }
+
+            // Theme Light/Dark Engine Handler Setup
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+                localStorage.setItem('theme', theme);
+            });
         });
     </script>
 </body>
